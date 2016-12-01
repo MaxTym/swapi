@@ -4,15 +4,42 @@
         <meta charset="utf-8">
         <title>Star Wars</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Location</h1>
-        <button id="allCharactersButton">Show all characters</button>
-        <button id="allVehiclesButton">Show all vehicles</button>
-        <button id="allFilmsButton">Show all films</button>
-        <form>
-            <input type='text' id='search_name'>
-            <input type='button' id='search_by_name' value='Search by name'>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">CHARACTERS</div>
+                <div class="panel-body"><img id="allCharactersButton" src="http://wallpapercave.com/wp/A6sqS0R.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="panel panel-danger">
+                <div class="panel-heading">FILMS</div>
+                <div class="panel-body"><img id="allFilmsButton" src="http://images6.fanpop.com/image/answers/3430000/3430641_1387171015226.52res_300_277.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="panel panel-success">
+                <div class="panel-heading">VEHICLES</div>
+                <div class="panel-body"><img id="allVehiclesButton" src="https://s-media-cache-ak0.pinimg.com/originals/f5/24/a6/f524a696c0d17ebf5abe1ae08606ed8e.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+
+          </div>
+        </div><br>
+
+        <form class="form-inline">Search by name:
+          <input type="text" id='search_name' class="form-control" size="50" placeholder="Enter a name">
+          <button type="button" id='search_by_name' class="btn btn-danger">Search</button>
         </form>
         <div id="info"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

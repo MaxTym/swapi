@@ -1,10 +1,11 @@
 function get_characters() {
+    $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 10; j++){
         $.ajax('http://swapi.co/api/people?page=' +j).done(function (stuff){
         var people = stuff.results
         for (var i = 0; i < people.length; i++){
-            $table.html($table.html() + people[i]['name'] + "<br>")
+            $table.html($table.html() + "<tr><td>" + people[i]['name'] + "<br>")
             $('#info').append($table)
             }
         })
@@ -13,6 +14,7 @@ function get_characters() {
 
 
 function get_films() {
+    $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 2; j++){
         $.ajax('http://swapi.co/api/films?page=' +j).done(function (stuff){
@@ -28,6 +30,7 @@ function get_films() {
 
 
 function get_vehicles() {
+    $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 5; j++){
         $.ajax('http://swapi.co/api/vehicles?page=' +j).done(function (stuff){
@@ -44,7 +47,7 @@ function get_vehicles() {
 
 function search_by_name(search_name){
     var name = document.getElementById('search_name').value
-    var $table = $("<p>")
+    var $table = $("<table>")
     for (var j = 1; j < 10; j++){
         $.ajax('http://swapi.co/api/people?page=' +j).done(function (stuff){
         var people = stuff.results
@@ -54,7 +57,8 @@ function search_by_name(search_name){
                 list_of_films(people[i]['films'])
                 console.log(people)
                 get_species(people[i]['species'])
-                get_vehicles(people[i]['vehicles'])
+                get_vehicles_for_character(people[i]['vehicles'])
+                get_starships_for_character(people[i]['starships'])
                 $table.html($table.html() + people[i]['name'] + "<br>"
                                           + "Eye color: " + people[i]['eye_color'] + "<br>"
                                           + "Gender: " + people[i]['gender'] + "<br>"
@@ -62,7 +66,8 @@ function search_by_name(search_name){
                                           +  "Homeworld: <span id='homeworld'></span> <br>"
                                           +  "Films: <span id='films'></span> <br>"
                                           +  "Species: <span id='species'></span> <br>"
-                                          +  "Vehicles: <span id='vehicles'></span> <br>")
+                                          +  "Vehicles: <span id='vehicles'></span> <br>"
+                                          +  "Starships: <span id='starships'></span> <br>")
                 $('#info').append($table)
             }
             }
@@ -75,7 +80,7 @@ function list_of_films(url) {
     var array = url
     for (var j = 1; j < 7; j++){
         jQuery.ajax(array[j]).done(function(results){
-        $('#films').html($('#films').html() + results['title'] + ", ")
+        $('#films').html($('#films').html() + results['title'] + "<br>")
     })
     }
 }
@@ -93,18 +98,28 @@ function get_species(url){
     var array = url
     for (var j = 0; j < 7; j++){
         jQuery.ajax(array[j]).done(function(results){
-        $('#species').html($('#species').html() + results['name'])
+        $('#species').html($('#species').html() + results['name'] + "<br>")
     })
     }
 }
 
 
-function get_vehicles(url){
+function get_vehicles_for_character(url){
+    console.log("here")
     var array = url
     for (var j = 0; j < 7; j++){
         jQuery.ajax(array[j]).done(function(results){
-        console.log(results['name'])
-        $('#vehicles').html($('#vehicles').html() + results['name'])
+        $('#vehicles').html($('#vehicles').html() + results['name'] + "<br>")
+    })
+    }
+}
+
+function get_starships_for_character(url){
+    console.log("here")
+    var array = url
+    for (var j = 0; j < 7; j++){
+        jQuery.ajax(array[j]).done(function(results){
+        $('#starships').html($('#starships').html() + results['name'] + "<br>")
     })
     }
 }
