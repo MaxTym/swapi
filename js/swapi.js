@@ -1,6 +1,7 @@
 function get_characters() {
     play()
     $("#info").html("")
+    $("#info").append("<tr><td> Characters: <br><br>")
     var $table = $("<p>")
     for (var j = 1; j < 10; j++){
         $.ajax('http://swapi.co/api/people?page=' +j).done(function (stuff){
@@ -17,6 +18,7 @@ function get_characters() {
 function get_films() {
     play()
     $("#info").html("")
+    $("#info").append("<tr><td> Films: <br><br>")
     var $table = $("<p>")
     for (var j = 1; j < 2; j++){
         $.ajax('http://swapi.co/api/films?page=' +j).done(function (stuff){
@@ -34,6 +36,7 @@ function get_films() {
 function get_vehicles() {
     play()
     $("#info").html("")
+    $("#info").append("<tr><td> Vehicles: <br><br>")
     var $table = $("<p>")
     for (var j = 1; j < 5; j++){
         $.ajax('http://swapi.co/api/vehicles?page=' +j).done(function (stuff){
