@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 body {
 	background-image: url('maxresdefault.jpg');
 }
 
-
-=======
->>>>>>> 36ba7491e70aac2e4c3f5d2a54fc4e9e55475e8a
 #titles
 {
 	position: absolute;
@@ -24,10 +20,6 @@ body {
 
 #titles:after
 {
-<<<<<<< HEAD
-	color: yellow;
-=======
->>>>>>> 36ba7491e70aac2e4c3f5d2a54fc4e9e55475e8a
 	position: absolute;
 	content: ' ';
 	left: 0;
@@ -40,12 +32,10 @@ body {
 
 #titlecontent
 {
-<<<<<<< HEAD
+
 	font-family: "ITC Serif Gothic", Lato;
   	font-size: 1em;
 	color: yellow;
-=======
->>>>>>> 36ba7491e70aac2e4c3f5d2a54fc4e9e55475e8a
 	position: absolute;
 	top: 100%;
 	animation: scroll 100s linear 4s infinite;
