@@ -1,4 +1,5 @@
 function get_characters() {
+    play()
     $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 10; j++){
@@ -14,6 +15,7 @@ function get_characters() {
 
 
 function get_films() {
+    play()
     $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 2; j++){
@@ -30,6 +32,7 @@ function get_films() {
 
 
 function get_vehicles() {
+    play()
     $("#info").html("")
     var $table = $("<p>")
     for (var j = 1; j < 5; j++){
@@ -105,7 +108,6 @@ function get_species(url){
 
 
 function get_vehicles_for_character(url){
-    console.log("here")
     var array = url
     for (var j = 0; j < 7; j++){
         jQuery.ajax(array[j]).done(function(results){
@@ -125,6 +127,23 @@ function get_starships_for_character(url){
 }
 
 
+function play(){
+       var audio = document.getElementById("audio");
+       audio.play();
+}
+
+function mute(){
+    var audio = document.getElementById('audio');
+    document.getElementById('mute').addEventListener('click', function (e)
+    {
+        e = e || window.event;
+        audio.muted = !audio.muted;
+        e.preventDefault();
+    }, false);
+}
+
+$("#mute").click(mute)
+$("#play").click(play)
 $("#allCharactersButton").click(get_characters)
 $("#allFilmsButton").click(get_films)
 $("#allVehiclesButton").click(get_vehicles)

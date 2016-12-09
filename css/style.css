@@ -1,3 +1,8 @@
+body {
+	background-image: url('maxresdefault.jpg');
+}
+
+
 #titles
 {
 	position: absolute;
@@ -16,6 +21,7 @@
 
 #titles:after
 {
+	color: yellow;
 	position: absolute;
 	content: ' ';
 	left: 0;
@@ -28,6 +34,9 @@
 
 #titlecontent
 {
+	font-family: "ITC Serif Gothic", Lato;
+  	font-size: 1em;
+	color: yellow;
 	position: absolute;
 	top: 100%;
 	animation: scroll 100s linear 4s infinite;
