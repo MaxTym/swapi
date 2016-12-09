@@ -50,6 +50,7 @@ function get_vehicles() {
 
 function search_by_name(search_name){
     var name = document.getElementById('search_name').value
+    $("#info").html("")
     var $table = $("<table>")
     for (var j = 1; j < 10; j++){
         $.ajax('http://swapi.co/api/people?page=' +j).done(function (stuff){
