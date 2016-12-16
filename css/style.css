@@ -4,6 +4,7 @@ body {
 
 #titles
 {
+	z-index: -1;
 	position: absolute;
 	width: 18em;
 	height: 50em;
@@ -42,4 +43,8 @@ body {
 @keyframes scroll {
 	0% { top: 100%; }
 	100% { top: -170%; }
+}
+
+.panel-body:hover{
+    cursor: pointer;
 }
