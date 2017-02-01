@@ -38,7 +38,6 @@ function get_vehicles() {
     for (var j = 1; j < 5; j++){
         $.ajax('http://swapi.co/api/vehicles?page=' +j).done(function (stuff){
         var vehicle = stuff.results
-        console.log(vehicle)
         for (var i = 0; i < vehicle.length; i++){
             $table.html($table.html() + vehicle[i]['name'] + "<br>")
             $('#info').append($table)
@@ -59,7 +58,6 @@ function search_by_name(){
             if (people[i]["name"] == name) {
                 homeworldbyId(people[i]['homeworld'])
                 list_of_films(people[i]['films'])
-                console.log(people)
                 get_species(people[i]['species'])
                 get_vehicles_for_character(people[i]['vehicles'])
                 get_starships_for_character(people[i]['starships'])
