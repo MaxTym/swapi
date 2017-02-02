@@ -1,3 +1,7 @@
+getAllVehicles()
+getAllEpisodes()
+getAllCharacters()
+
 function get_characters() {
     play()
     $("#info").html("")
@@ -47,8 +51,23 @@ function get_vehicles() {
 }
 
 
+function getCharacters(){
+   var dropdown = document.getElementById("selectTask")
+   var x = document.createElement("OPTION")
+   x.setAttribute("title", "value")
+   $.ajax('/api/tasks/').done(function(results){
+       var tasks = results.results
+       $('#selectTask').html("")
+       dropdown[0] = new Option("")
+       for (var i = 0; i < tasks.length; ++i){
+              dropdown[dropdown.length] = new Option(tasks[i]['title'], tasks[i]['url']);
+              }
+   })
+}
+
+
 function search_by_name(){
-    var name = $('#search_name').val()
+    var name = $("#dropDownPeople").val()
     $("#info").html("")
     var $table = $("<table>")
     for (var j = 1; j < 10; j++){
@@ -79,23 +98,18 @@ function search_by_name(){
 
 
 function search_by_episode(){
-    var episode = $("#episode").val()
+    var episode = $("#dropDownEpisodes").val()
     $("#info").html("")
     var $table = $("<table>")
-    $.ajax('http://swapi.co/api/films/').done(function (stuff){
-        var films = stuff.results
-        for (var i = 0; i < films.length; i++){
-            if (films[i]["episode_id"] == episode){
-                topActorsForFilm(films[i]['characters'])
-                $table.html($table.html() + films[i]['title'] + "<br>"
-                                          + "Release Date: " + films[i]['release_date'] + "<br>"
-                                          + "Director: " + films[i]['director'] + "<br>"
-                                          + "Producer(s): " + films[i]['producer'] + "<br>"
-                                          +  "Actors: <span id='actors'></span><br>"
-                                          + "and others...<br>")
-                $('#info').append($table)
-            }
-        }
+    $.ajax('http://swapi.co/api/films/' + episode.slice(0,1) + '/').done(function (stuff){
+        topActorsForFilm(stuff['characters'])
+        $table.html($table.html() + stuff['title'] + "<br>"
+                                  + "Release Date: " + stuff['release_date'] + "<br>"
+                                  + "Director: " + stuff['director'] + "<br>"
+                                  + "Producer(s): " + stuff['producer'] + "<br>"
+                                  +  "Actors: <span id='actors'></span><br>"
+                                  + "and others...<br>")
+        $('#info').append($table)
     })
 }
 
@@ -129,10 +143,8 @@ function search_by_vehicle(){
 
 
 function topActorsForFilm(actors){
-    console.log("here")
     for (var j = 0; j < 3; j++){
-        jQuery.ajax(actors[j]).done(function(results){
-            console.log(results['name'])
+        $.ajax(actors[j]).done(function(results){
             $('#actors').html($('#actors').html()+ '<br>' + results['name'])
         })
     }
@@ -165,7 +177,7 @@ function get_species(url){
 function get_vehicles_for_character(url){
     if (url.length > 0){
         for (var j = 0; j < url.length; j++){
-            jQuery.ajax(array[j]).done(function(results){
+            jQuery.ajax(url[j]).done(function(results){
             $('#vehicles').html($('#vehicles').html() + results['name'] + "<br>")
             })
         }
@@ -185,7 +197,6 @@ function get_starships_for_character(url){
         }
     }
     else {
-        console.log("no starships")
         $('#starships').append("None")
         }
 }
@@ -197,23 +208,25 @@ function play(){
 }
 
 
-function mute(){
+function mute(e){
     var audio = document.getElementById('audio');
-    document.getElementById('mute').addEventListener('click', function (e)
-    {
-        e = e || window.event;
-        audio.muted = !audio.muted;
-        e.preventDefault();
-    }, false);
+    e = e || window.event;
+    audio.muted = !audio.muted;
+    e.preventDefault();
+    if (audio.muted === false){
+        document.getElementById("mute").src = "mute.jpeg"
+    }
+    else {
+        document.getElementById("mute").src = "unmute.jpeg"
+    }
 }
 
 
-function dropDownVehicles(){
+function getAllVehicles(){
     for (var j = 1; j < 5; j++){
         $.ajax('http://swapi.co/api/vehicles?page=' +j).done(function (stuff){
         var vehicle = stuff.results
         for (var i = 0; i < vehicle.length; i++){
-            console.log(vehicle.length)
             $("#dropDownVehicles").append("<option>" + vehicle[i]['name'] + "</option>");
             }
         })
@@ -221,12 +234,33 @@ function dropDownVehicles(){
 }
 
 
-$("#dropDownVehicles").click(dropDownVehicles)
+function getAllEpisodes(){
+    $.ajax('http://swapi.co/api/films').done(function (stuff){
+    for (var i = 0; i < stuff.results.length; i++){
+        $("#dropDownEpisodes").append("<option>" + stuff.results[i]['episode_id']
+                                      + '. ' + stuff.results[i]['title'] + " "
+                                      + stuff.results[i]['release_date'].slice(0,4) + "</option>");
+        }
+    })
+}
+
+
+function getAllCharacters(){
+    for (var j = 1; j < 10; j++){
+        $.ajax('http://swapi.co/api/people?page=' + j).done(function(stuff){
+            for (var i = 0; i < stuff.results.length; i++){
+                $("#dropDownPeople").append("<option>" + stuff.results[i]['name'] + "</option>");
+            }
+        })
+    }
+}
+
+
 $("#search_by_vehicle").click(search_by_vehicle)
 $("#mute").click(mute)
 $("#play").click(play)
 $("#allCharactersButton").click(get_characters)
 $("#allFilmsButton").click(get_films)
 $("#allVehiclesButton").click(get_vehicles)
-$("#search_by_name").click(search_by_name)
-$("#search_by_episode").click(search_by_episode)
+$("#searchPeople").click(search_by_name)
+$("#searchEpisode").click(search_by_episode)

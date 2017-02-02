@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <img src="http://www.iconsdb.com/icons/preview/icon-sets/web-2-orange-2/mute-xxl.png" style="width:2%" id="mute">
+        <img src="mute.jpeg" style="width:2%" id="mute">
         <audio id="audio" src="StarWars.mp3" ></audio>
         <div class="container">
           <div class="row">
@@ -38,15 +38,15 @@
           </div>
         </div>
 
-        <form class="form-inline">
-          <input type="text" id='search_name' class="form-control" size="25" placeholder="Enter a name">
-          <button type="button" id='search_by_name' class="btn btn-danger">Search</button>
-        </form>
-        <form class="form-inline">
-          <input type="text" id='episode' class="form-control" size="25" placeholder="Enter a episode number">
-          <button type="button" id='search_by_episode' class="btn btn-danger">Search</button>
-        </form>
-        <select name="drop_down" id="dropDownVehicles">
+        <select name="drop_down" id="dropDownPeople" style="width: 250px">
+            <option value="None">Select character</option>
+        </select>
+        <button type="button" id='searchPeople' class="btn btn-danger">Search</button><br>
+        <select name="drop_down" id="dropDownEpisodes" style="width: 250px">
+            <option value="None">Select episode</option>
+        </select>
+        <button type="button" id='searchEpisode' class="btn btn-danger">Search</button><br>
+        <select name="drop_down" id="dropDownVehicles" style="width: 250px">
             <option value="None">Select vehicle</option>
         </select>
         <button type="button" id='search_by_vehicle' class="btn btn-danger">Search</button>
