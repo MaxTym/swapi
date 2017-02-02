@@ -31,7 +31,7 @@ body {
 	pointer-events: none;
 }
 
-#titlecontent
+.titlecontent
 {
   	font-size: 2em;
 	color: yellow;
